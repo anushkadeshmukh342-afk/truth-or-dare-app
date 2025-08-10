@@ -1,7 +1,6 @@
 import streamlit as st
 import json
 import random
-import os
 import time
 from typing import Dict, List
 
@@ -18,13 +17,9 @@ st.set_page_config(
 def load_prompts() -> Dict:
     """Load truth and dare prompts from JSON file"""
     import os
-
-@st.cache_data
-def load_prompts() -> Dict:
-    """Load truth and dare prompts from JSON file"""
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    prompts_path = os.path.join(base_dir, "data", "prompts.json")
-    with open(prompts_path, 'r', encoding='utf-8') as f:
+    BASE_DIR = os.path.dirname(__file__)  # directory where app.py is located
+    file_path = os.path.join(BASE_DIR, "data", "prompts.json")
+    with open(file_path, "r") as f:
         return json.load(f)
 
 def initialize_session_state():
